@@ -3,7 +3,7 @@
 # Convert plain text to base64                                                                       
                                                                                                      
 echo "                                                                                               
-The text $* has been converted to base64                                                             
+The text '$*' has been converted to base64                                                             
 "                                                                                                    
                                                                                                      
 echo "$*" | base64                                                                                   
