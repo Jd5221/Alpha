@@ -1,0 +1,45 @@
+#!/bin/bash
+# -e option is to convert plain text into base64
+# -d option is to convert base64 to plain text
+# -f option is to convert plain text to base32
+# -g option is to convert base32 to plain text
+# -h option is to convert Hexadecimal to plain text 
+while [ -n "$1" ]
+do
+case "$1" in
+-e)echo ""
+read -p "Enter word or phrase you want converted to Base64: " text
+echo "
+Your text '$text' was converted to base64"
+        echo ""
+echo "$text" | base64
+        echo "" ;;
+-d)echo ""
+read -p "Enter base64: " base
+        echo ""
+echo "$base" | base64 -d
+        echo "" ;;
+-f)echo ""
+read -p "Enter word or phrase you want converted to Base32: " text
+echo "
+Your text '$text' was converted to base32"
+        echo ""
+echo "$text" | base32
+        echo "" ;;
+-g)echo ""
+read -p "Enter base32: " base
+        echo ""
+echo "$base" | base32 -d
+        echo "" ;;
+-h)echo ""
+read -p "Enter hex you want converted into text: " hex
+        echo ""
+echo "$hex" | perl -pe 's/([0-9a-f]{2})/chr hex $1/gie'
+        echo "" ;;
+*)echo ""
+echo "Option $1 is not an option"
+        echo ""
+esac
+shift
+done
+exit 0
