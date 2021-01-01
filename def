@@ -34,7 +34,7 @@ echo "$base" | base32 -d
 -h)echo ""
 read -p "Enter hex you want converted into text: " hex
         echo ""
-echo "$hex" | sed 's/ //g'|perl -pe 's/([0-9a-f]{2})/chr hex $1/gie'
+echo "$hex" | sed 's/ //g' | perl -pe 's/([0-9a-f]{2})/chr hex $1/gie'
         echo "" ;;
 --help)echo ""
         echo "The available options are listed below -
