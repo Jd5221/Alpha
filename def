@@ -36,16 +36,22 @@ read -p "Enter hex you want converted into text: " hex
         echo ""
 echo "$hex" | sed 's/ //g' | perl -pe 's/([0-9a-f]{2})/chr hex $1/gie'
         echo "" ;;
+-c)echo ""                                                                                                                                                 
+        read -p "Enter plain text to convert to Hexadecimal: " Hex                                                                                         
+                echo ""                                                                                                                                    
+        echo -n "$Hex" | od -A n -t x1                                                                                                             
+                echo "" ;;
 --help)echo ""
         echo "The available options are listed below -
 # -e option is to convert plain text into base64
 # -d option is to convert base64 to plain text
 # -f option is to convert plain text to base32
 # -g option is to convert base32 to plain text
-# -h option is to convert Hexadecimal to plain text"
+# -h option is to convert Hexadecimal to plain text
+# -c option is to convert plain text to Hexadecimal"
         echo "" ;;        
 *)echo ""
-echo "Option $1 is not an option, use --help for options"
+echo -e "\033[31mOption \033[34m$1\033[0m \033[31mis not an option, use --help for options\033[0m"
         echo ""
 esac
 shift
