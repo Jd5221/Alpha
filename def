@@ -51,7 +51,7 @@ echo "$hex" | sed 's/ //g' | perl -pe 's/([0-9a-f]{2})/chr hex $1/gie'
 # -c option is to convert plain text to Hexadecimal"
         echo "" ;;        
 *)echo ""
-echo -e "\033[31mOption \033[34m$1\033[0m \033[31mis not an option, use --help for options\033[0m"
+echo -e "\033[31mOption \033[34m$1\033[0m \033[31mis not an option, use \033[32m--help\033[0m \033[31mfor options\033[0m"
         echo ""
 esac
 shift
