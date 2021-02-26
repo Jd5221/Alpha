@@ -1,6 +1,6 @@
 #!/bin/bash
 
-file=$HOME/./number
+file=$HOME/./numbers
 var=`echo "$*" | awk '{for (i=2; i<NF; i++) printf $i " "; print $NF}'`
 red="\033[31m"
 blue="\033[34m"
