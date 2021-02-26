@@ -1,4 +1,4 @@
-You want to save file "numbers" in your home directory. I have file=$HOME/./numbers this way the script can find it.
+You want to save file "Alpha" in your home directory. I have file=$HOME/Alpha/./numbers this way the script can find it.
 If you do move numbers just make sure you update the variable so it pulls from the right file path.
 
 for those that arent to familiar with bash follow these tips
