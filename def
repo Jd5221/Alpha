@@ -11,7 +11,7 @@ font="\033#6"
 if [ -z "$1" ] ; then
 echo -e "############################\n${font}${red}Welcome to def$reset\n############################"
 echo
-echo "use --help for more options"
+echo -e "${blue}use --help for more options$reset"
 echo "
 1=encode in base64
 2=decode base64
