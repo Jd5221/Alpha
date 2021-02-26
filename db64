@@ -1,9 +1,0 @@
-#!/bin/bash
-# converts base64 to plain text
-echo "
-Your base64 has been converted to plain text
-"
-echo "$1" | base64 -d
-echo ""
-
-exit 0
