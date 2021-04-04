@@ -22,7 +22,6 @@ else
 	echo 
 fi
 ########################
-sudo chmod +x def
-sudo chmod 777 def 
+sudo chmod +x def 
 sudo cp -i def /usr/bin 
 
