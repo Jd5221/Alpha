@@ -124,7 +124,7 @@ You can also use the available options listed below for quick results-
 # -dhex option is to convert Hexadecimal to plain text
 # -eb option is to convert plain text to binary
 # -db option is to convert binary to plain text
-# example: def2 -e64 hello world
+# example: def -e64 hello world
 
 EOCAT
     ;;
