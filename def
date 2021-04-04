@@ -1,6 +1,9 @@
 #!/bin/bash
 
-file=$HOME/Alpha/./numbers
+# def! created by jd5221
+# update version 3.0 
+# 04/04/2021
+
 var=`echo "$*" | awk '{for (i=2; i<NF; i++) printf $i " "; print $NF}'`
 red="\033[31m"
 blue="\033[34m"
@@ -12,60 +15,50 @@ if [ -z "$1" ] ; then
 echo -e "############################\n${font}${red}Welcome to def$reset\n############################"
 echo
 echo -e "${blue}use --help for more options$reset"
-echo "
-1=encode in base64
-2=decode base64
-3=encode in base32
-4=decode base32
-5=encode in Hecadecimal
-6=decode Hexadecimal
-"
+echo
+echo -e "${blue}choose an option$reset"
 
-read -p "choose a number to use: " number
-    if [ "$number" = "1" ] ; then
-	    read -p "Enter word or phrase you want encoded in Base64: " encode64
+  select opt in "encode in base64" "decode base64" "encode in base32" "decode base32" "encode in Hecadecimal" "decode Hexadecimal" "encode in binary" "decode binary"
+  do 
+  case $REPLY in
+	
+	1) 
+        read -p "Enter word or phrase you want encoded in Base64: " encode64
 	        echo "$encode64" | base64
-	        echo
-    elif [ "$number" = "2" ] ; then
-	    read -p "Enter base64: " decode64
+	        echo ;;
+	2)
+        read -p "Enter base64: " decode64
 	        echo "$decode64" | base64 -d
-	        echo
-    elif [ "$number" = "3" ] ; then
-	    read -p "Enter word or phrase you want encoded in Base32: " encode32
+	        echo ;;
+	3)
+        read -p "Enter word or phrase you want encoded in Base32: " encode32
 	        echo "$encode32" | base32
-	        echo
-    elif [ "$number" = "4" ] ; then
-	    read -p "Enter base32: " decode32
+	        echo ;;
+	4)
+        read -p "Enter base32: " decode32
 	        echo "$decode32" | base32 -d
-	        echo
-    elif [ "$number" = "5" ] ; then
-	    read -p "Enter plain text to convert to Hexadecimal: " Hex
+	        echo ;;
+	5)
+        read -p "Enter plain text to convert to Hexadecimal: " Hex
 	        echo "$Hex" | od -A n -t x1
-	        echo
-    elif [ "$number" = "6" ] ; then
-	    read -p "Enter Hexadecimal: " dhex
-	    echo "$dhex" | sed 's/ //g' | perl -pe 's/([0-9a-f]{2})/chr hex $1/gie'
-	    echo
-    else
-	    echo "Please select a number"
-	    ${file}
-    fi
-fi
-
-##########################################################
-
-if [ "$1" = "--help" ] ; then
-	echo "Use def for an interactive way to encode/decode strings.
-
-You can also use the available options listed below for quick results-
-# -e64 option is to convert plain text into base64
-# -d64 option is to convert base64 to plain text
-# -e32 option is to convert plain text to base32
-# -d32 option is to convert base32 to plain text
-# -ehex option is to convert plain text to Hexadecimal
-# -dhex option is to convert Hexadecimal to plain text
-# example:
-# terminal$ def2 -e64 hello world"
+	        echo ;;
+	6)
+        read -p "Enter Hexadecimal: " dhex
+	        echo "$dhex" | sed 's/ //g' | perl -pe 's/([0-9a-f]{2})/chr hex $1/gie'
+	        echo ;;
+	7)
+        read -p "Enter word or phrase you want encoded in binary: " bin
+            echo "$bin" | xxd -b | cut -c 11-63
+            echo ;;
+    8)
+        read -p "Enter binary: " bin
+            echo "$bin" | perl -lape '$_=pack"(B8)*",@F'
+            echo ;;
+	*) 
+        echo "Invalid option $REPLY. Choose an number listed above"
+                 ;;
+  esac 
+  done
 fi
 
 #######################################################
@@ -75,30 +68,70 @@ fi
 while [ -n "$1" ]
 do
 case "$1" in 
-    -e64)echo "Your text '$var' was encoded with base64" | 
+    -e64)
+        echo "Your text '$var' was encoded with base64" 
             echo
             echo "$var" | base64
             echo ;;
-    -d64)echo "Your base64 was decoded"
+    -d64)
+        echo "Your base64 was decoded"
             echo 
             echo "$2" | base64 -d
             echo ;;
-    -e32)echo "Your text '$var' was encoded with base32"
+    -e32)
+        echo "Your text '$var' was encoded with base32"
             echo 
             echo "$var" | base32
             echo "" ;;
-    -d32)echo "Your base32 was decoded"
+    -d32)
+        echo "Your base32 was decoded"
             echo
             echo "$2" | base32 -d
             echo ;;
-    -ehex)echo "Your text '$var' was encoded with Hexadecimal"
+    -ehex)
+        echo "Your text '$var' was encoded with Hexadecimal"
 	        echo 
 	        echo -n "$var" | od -A n -t x1
 	        echo ;;
-    -dhex)echo "Your Hexadecimal was decoded"
+    -dhex)
+        echo "Your Hexadecimal was decoded"
             echo
             echo "$var" | sed 's/ //g'| perl -pe 's/([0-9a-f]{2})/chr hex $1/gie'
-            echo ;;    
+            echo ;; 
+    -eb)
+        echo "Your text '$var' has been encoded in binary"
+            echo
+            echo "$var" | xxd -b | cut -c 11-63
+            echo ;;
+    -db)
+        echo "Your binary has been decoded"
+            echo "$var" | perl -lape '$_=pack"(B8)*",@F'
+            echo ;;
+    -h|--help )
+	    
+	    cat << EOCAT 
+Use def for an interactive way to encode/decode strings.
+
+`echo -e ${blue}Be careful when you are copying multiline strings and pasting, These read prompts only read the first line,$reset` 
+`echo -e ${blue}so you will need to make sure you copy it as 1 line then paste for accurate results.$reset`
+
+You can also use the available options listed below for quick results-
+# -e64 option is to convert plain text into base64
+# -d64 option is to convert base64 to plain text
+# -e32 option is to convert plain text to base32
+# -d32 option is to convert base32 to plain text
+# -ehex option is to convert plain text to Hexadecimal
+# -dhex option is to convert Hexadecimal to plain text
+# -eb option is to convert plain text to binary
+# -db option is to convert binary to plain text
+# example: def2 -e64 hello world
+
+EOCAT
+    ;;
+
+    *)
+        echo -e "############################\n${red}Use -h or --help for options$reset\n############################"
+        echo ;;   
 esac
 shift
 done
