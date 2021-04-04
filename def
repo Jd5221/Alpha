@@ -50,7 +50,7 @@ echo -e "${blue}choose an option$reset"
         read -p "Enter word or phrase you want encoded in binary: " bin
             echo "$bin" | xxd -b | cut -c 11-63
             echo ;;
-    8)
+        8)
         read -p "Enter binary: " bin
             echo "$bin" | perl -lape '$_=pack"(B8)*",@F'
             echo ;;
