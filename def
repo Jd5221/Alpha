@@ -127,11 +127,7 @@ You can also use the available options listed below for quick results-
 # example: def -e64 hello world
 
 EOCAT
-    ;;
-
-    *)
-        echo -e "############################\n${red}Use -h or --help for options$reset\n############################"
-        echo ;;   
+    ;;   
 esac
 shift
 done
