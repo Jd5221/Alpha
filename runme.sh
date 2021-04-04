@@ -23,8 +23,6 @@ else
 fi
 ########################
 sudo chmod +x def
-sudo chmod 777 def
-sudo chmod +x numbers
-sudo chmod 777 numbers
+sudo chmod 777 def 
 sudo cp -i def /usr/bin 
 
