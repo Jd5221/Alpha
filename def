@@ -14,7 +14,7 @@ font="\033#6"
 if [ -z "$1" ] ; then
 echo -e "############################\n${font}${red}Welcome to def$reset\n############################"
 echo
-echo -e "${blue}use --help for more options$reset"
+echo -e "${blue}use -h or --help for more options and assistance$reset"
 echo
 echo -e "${blue}choose an option$reset"
 
